@@ -1,0 +1,35 @@
+﻿@page "/"
+@using MauiApp1.Models;
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<button @onclick="PrintFunc"> click</button>
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+
+@if(_display)
+{
+    @foreach (var item in list)
+    {
+        <div><h1>@item.Name</h1>&nbsp;&nbsp;&nbsp;<h3>@item.Age</h3></div>
+    }
+}
+
+@code{
+    public bool _display { get; set; } = false;
+
+
+    List<TestModel> list = new List<TestModel>()
+        {
+            new TestModel(){Name="Test Name 1",Age=50},
+            new TestModel(){Name="Test Name 2",Age=100},
+            new TestModel(){Name="Test Name 2",Age=610},
+        };
+    public void PrintFunc()
+    {
+        _display = true;
+        StateHasChanged();
+    }
+}
